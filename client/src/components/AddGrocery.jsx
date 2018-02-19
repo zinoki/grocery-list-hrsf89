@@ -5,7 +5,7 @@ class AddGrocery extends React.Component {
     super(props);
     this.state = {
       item: '',
-      quantity: 0
+      quantity: ''
     }
     this.handleChangeItem = this.handleChangeItem.bind(this);
     this.handleChangeQuantity = this.handleChangeQuantity.bind(this);
@@ -20,6 +20,7 @@ class AddGrocery extends React.Component {
   handleSubmit(e) {
     console.log(this.state.item, 'item', this.state.quantity, 'quantity');
     e.preventDefault();
+    this.props.postData(this.state.item)
   }
 
   render () {

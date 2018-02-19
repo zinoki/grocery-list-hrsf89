@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import GroceryItem from './components/GroceryItem.jsx';
 import GroceryList from './components/GroceryList.jsx';
 import AddGrocery from './components/AddGrocery.jsx';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,12 +17,42 @@ class App extends React.Component {
       ]
     }
   }
+  componentWillMount() {
+    this.fetchData();
+    this.postData('hello world!')
+  }
+  fetchData() {
+    $.ajax({
+      method: 'GET',
+      url: 'http://localhost:3000',
+      contentType: 'text/plain',
+      success: function() {
+        console.log('success!')
+      },
+      error: function() {
+        console.log('failure')
+      }
+    })
+  }
+  postData(input) {
+    $.ajax({
+      method: 'POST',
+      url: 'http://localhost:3000/groceries',
+      contentType: 'text/plain',
+      data: input,
+      success: function(data) {
 
-  
+        console.log('success! here is the data: ', data)
+      },
+      error: function() {
+        console.log('failure')
+      }
+    })
+  }
   render () {
     return (
     <div>
-      <AddGrocery />
+      <AddGrocery postData={this.postData}/>
       <GroceryList list={this.state.list}/>
     </div>
     )
