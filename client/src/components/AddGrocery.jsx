@@ -4,16 +4,21 @@ class AddGrocery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      item: '',
+      quantity: 0
     }
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeItem = this.handleChangeItem.bind(this);
+    this.handleChangeQuantity = this.handleChangeQuantity.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(e) {
-    this.setState({value: e.target.value});
+  handleChangeItem(e) {
+    this.setState({item: e.target.value});
+  }
+  handleChangeQuantity(event) {
+    this.setState({quantity: event.target.value});
   }
   handleSubmit(e) {
-    console.log('worked');
+    console.log(this.state.item, 'item', this.state.quantity, 'quantity');
   }
 
   render () {
@@ -21,7 +26,11 @@ class AddGrocery extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Description
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input type="text" value={this.state.item} onChange={this.handleChangeItem} />
+        </label>
+        <label>
+          Quantity
+          <input type="text" value={this.state.quantity} onChange={this.handleChangeQuantity} />
         </label>
         <input type="submit" value="Submit" />
       </form>
