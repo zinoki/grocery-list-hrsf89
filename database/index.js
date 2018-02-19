@@ -14,19 +14,21 @@ var grocerySchema = mongoose.Schema({
 var Grocery = mongoose.model('Grocery', grocerySchema);
 
 
-var saveToDB = function(data) {
-
-    for (var i = 0; i < data.length; i++) {
-        var newGrocery = new Grocery({
-            item: data.item,
-            quantity: data.quantity
-        });
-        newGrocery.save();
-        //fix later
-    }
+var saveToDB = function(grocery) {
+    grocery = JSON.parse(grocery);
+    console.log('grocery', grocery);
+    var newGrocery = new Grocery({
+        item: grocery.item,
+        quantity: grocery.quantity
+    });
+    newGrocery.save();
+    //fix later
 }
 
 var getFromDB = function(callback) {
     var groceryArray = Grocery.find();
     callback(groceryArray);
 }
+
+exports.saveToDB = saveToDB;
+exports.getFromDB = getFromDB;

@@ -19,7 +19,6 @@ class App extends React.Component {
   }
   componentWillMount() {
     this.fetchData();
-    this.postData('hello world!')
   }
   fetchData() {
     $.ajax({
@@ -39,10 +38,10 @@ class App extends React.Component {
       method: 'POST',
       url: 'http://localhost:3000/groceries',
       contentType: 'text/plain',
-      data: input,
+      data: JSON.stringify(input),
       success: function(data) {
-
-        console.log('success! here is the data: ', data)
+        var data = JSON.parse(data);
+        console.log('success! here is the data: ', data.item, data.quantity)
       },
       error: function() {
         console.log('failure')

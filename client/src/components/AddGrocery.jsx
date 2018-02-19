@@ -20,7 +20,10 @@ class AddGrocery extends React.Component {
   handleSubmit(e) {
     console.log(this.state.item, 'item', this.state.quantity, 'quantity');
     e.preventDefault();
-    this.props.postData(this.state.item)
+    this.props.postData({
+      item: this.state.item,
+      quantity: this.state.quantity
+    });
   }
 
   render () {
