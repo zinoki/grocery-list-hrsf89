@@ -19,6 +19,7 @@ class AddGrocery extends React.Component {
   }
   handleSubmit(e) {
     console.log(this.state.item, 'item', this.state.quantity, 'quantity');
+    e.preventDefault();
   }
 
   render () {

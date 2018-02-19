@@ -1,13 +1,15 @@
 import React from 'react';
+import GroceryItem from './GroceryItem.jsx';
 
 const GroceryList = ({list}) => (
-  <table>
-  <div className="groceries">{list.map(item => (
-    <tr>
-      <td>{item.description}</td><td>{item.quantity}</td>
-    </tr>
-  ))}</div>
-  </table>
-)
+  <div>
+  {list.map((item) => (
+    <div className="groceries">
+    <GroceryItem item={item} />
+    </div>)
+  )}
+</div>)
 
 export default GroceryList;
+
+
